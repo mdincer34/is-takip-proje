@@ -31,6 +31,10 @@ namespace is_takip_proje.Formlar
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPersoneller));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.LookUpDepartmanlar = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.TxtGorsel = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.TxtEmail = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.TxtSoyAd = new DevExpress.XtraEditors.TextEdit();
@@ -45,20 +49,16 @@ namespace is_takip_proje.Formlar
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.TxtGorsel = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.LookUpDepartmanlar = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LookUpDepartmanlar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtGorsel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtSoyAd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtAd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtGorsel.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LookUpDepartmanlar.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -81,8 +81,41 @@ namespace is_takip_proje.Formlar
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Location = new System.Drawing.Point(653, 1);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(331, 321);
+            this.groupControl1.Size = new System.Drawing.Size(331, 343);
             this.groupControl1.TabIndex = 7;
+            // 
+            // LookUpDepartmanlar
+            // 
+            this.LookUpDepartmanlar.EditValue = "";
+            this.LookUpDepartmanlar.Location = new System.Drawing.Point(89, 170);
+            this.LookUpDepartmanlar.Name = "LookUpDepartmanlar";
+            this.LookUpDepartmanlar.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.LookUpDepartmanlar.Size = new System.Drawing.Size(230, 20);
+            this.LookUpDepartmanlar.TabIndex = 15;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(19, 173);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(60, 13);
+            this.labelControl6.TabIndex = 14;
+            this.labelControl6.Text = "Departman :";
+            // 
+            // TxtGorsel
+            // 
+            this.TxtGorsel.Location = new System.Drawing.Point(89, 144);
+            this.TxtGorsel.Name = "TxtGorsel";
+            this.TxtGorsel.Size = new System.Drawing.Size(230, 20);
+            this.TxtGorsel.TabIndex = 13;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(39, 147);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(40, 13);
+            this.labelControl5.TabIndex = 12;
+            this.labelControl5.Text = "Görsel : ";
             // 
             // TxtEmail
             // 
@@ -122,6 +155,7 @@ namespace is_takip_proje.Formlar
             this.BtnGuncelle.Size = new System.Drawing.Size(230, 23);
             this.BtnGuncelle.TabIndex = 7;
             this.BtnGuncelle.Text = "Güncelle";
+            this.BtnGuncelle.Click += new System.EventHandler(this.BtnGuncelle_Click);
             // 
             // BtnSil
             // 
@@ -131,6 +165,7 @@ namespace is_takip_proje.Formlar
             this.BtnSil.Size = new System.Drawing.Size(230, 23);
             this.BtnSil.TabIndex = 6;
             this.BtnSil.Text = "Sil";
+            this.BtnSil.Click += new System.EventHandler(this.BtnSil_Click);
             // 
             // BtnEkle
             // 
@@ -187,7 +222,7 @@ namespace is_takip_proje.Formlar
             this.gridControl1.Location = new System.Drawing.Point(0, 1);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(647, 321);
+            this.gridControl1.Size = new System.Drawing.Size(647, 343);
             this.gridControl1.TabIndex = 6;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -197,45 +232,13 @@ namespace is_takip_proje.Formlar
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // TxtGorsel
-            // 
-            this.TxtGorsel.Location = new System.Drawing.Point(89, 144);
-            this.TxtGorsel.Name = "TxtGorsel";
-            this.TxtGorsel.Size = new System.Drawing.Size(230, 20);
-            this.TxtGorsel.TabIndex = 13;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Location = new System.Drawing.Point(39, 147);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(40, 13);
-            this.labelControl5.TabIndex = 12;
-            this.labelControl5.Text = "Görsel : ";
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Location = new System.Drawing.Point(19, 173);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(60, 13);
-            this.labelControl6.TabIndex = 14;
-            this.labelControl6.Text = "Departman :";
-            // 
-            // LookUpDepartmanlar
-            // 
-            this.LookUpDepartmanlar.EditValue = "";
-            this.LookUpDepartmanlar.Location = new System.Drawing.Point(89, 170);
-            this.LookUpDepartmanlar.Name = "LookUpDepartmanlar";
-            this.LookUpDepartmanlar.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.LookUpDepartmanlar.Size = new System.Drawing.Size(230, 20);
-            this.LookUpDepartmanlar.TabIndex = 15;
+            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             // 
             // FrmPersoneller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 321);
+            this.ClientSize = new System.Drawing.Size(984, 346);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.gridControl1);
             this.Name = "FrmPersoneller";
@@ -244,14 +247,14 @@ namespace is_takip_proje.Formlar
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LookUpDepartmanlar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtGorsel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtSoyAd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtAd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtGorsel.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LookUpDepartmanlar.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

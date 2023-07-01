@@ -31,9 +31,10 @@ namespace is_takip_proje.Formlar
                                x.Soyad,
                                x.Mail,
                                x.Telefon,
-                               x.Departman
+                               departman = x.TblDepartmanlar.Ad,
+                               x.Durum
                            };
-            gridControl1.DataSource = degerler.ToList();
+            gridControl1.DataSource = degerler.Where(x=> x.Durum==true).ToList();
         }
         private void FrmPersoneller_Load(object sender, EventArgs e)
         {
@@ -47,7 +48,7 @@ namespace is_takip_proje.Formlar
                                     x.Ad,
                                 }).ToList(); ;
 
-            // LookUpEdit compenentinin değerini id görüntülenecek kısmını ad olarak tanımla ve listeyi veri kaynağı olarak ver
+            // LookUpEdit compenentinin değerini id, görüntülenecek kısmını ad olarak tanımla ve listeyi veri kaynağı olarak ver
             LookUpDepartmanlar.Properties.ValueMember = "ID";
             LookUpDepartmanlar.Properties.DisplayMember = "Ad";
             LookUpDepartmanlar.Properties.DataSource = departmanlar;
@@ -77,6 +78,46 @@ namespace is_takip_proje.Formlar
             // İşlemin başarılı olduğunu kullanıcıya göster  
             XtraMessageBox.Show("Personel başarılı bir şekilde kayıt edildi.", 
                 "Bilgi",MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            Personeller();
+        }
+
+        private void BtnSil_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(TxtID.Text);
+            var deger = db.TblPersonel.Find(id);
+            deger.Durum = false;
+            db.SaveChanges();
+
+            XtraMessageBox.Show("Personel başarılı bir şekilde silindi, silinen personellerin listesinden silinmiş tüm personellere ulaşabilirsiniz...",
+                "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            Personeller();
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            TxtID.Text = gridView1.GetFocusedRowCellValue("ID").ToString();
+            TxtAd.Text = gridView1.GetFocusedRowCellValue("Ad").ToString();
+            TxtSoyAd.Text = gridView1.GetFocusedRowCellValue("Soyad").ToString();
+            TxtEmail.Text = gridView1.GetFocusedRowCellValue("Mail").ToString();
+            // TxtGorsel.Text = gridView1.GetFocusedRowCellValue("Gorsel").ToString();
+            LookUpDepartmanlar.Text = gridView1.GetFocusedRowCellValue("Departman").ToString();
+        }
+
+        private void BtnGuncelle_Click(object sender, EventArgs e)
+        {
+            int x = int.Parse(TxtID.Text);
+            var deger = db.TblPersonel.Find(x);
+            deger.Ad = TxtAd.Text;
+            deger.Soyad = TxtSoyAd.Text;
+            deger.Mail = TxtEmail.Text;
+            deger.Gorsel = TxtGorsel.Text;
+            deger.Departman = int.Parse(LookUpDepartmanlar.EditValue.ToString());
+            
+            db.SaveChanges();
+
+            XtraMessageBox.Show("Personel güncelleme işlemi başarıyla gerçekleşti.",
+                "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             Personeller();
         }
